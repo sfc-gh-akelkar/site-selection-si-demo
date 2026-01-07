@@ -82,7 +82,7 @@ How are my studies doing?
 
 #### 🔥 Question 2: Curiosity Follow-Up
 ```
-What are the 5 studies? And what does "Phase III" mean in this context?
+What are the 5 studies? And what Phase are they in?
 ```
 
 **🎤 Talk Track (Before):**
@@ -98,7 +98,7 @@ What are the 5 studies? And what does "Phase III" mean in this context?
 
 #### 🔥 Question 3: Specific Enrollment Metric
 ```
-What is our total enrollment across all Phase III studies?
+What is our total enrollment across all studies?
 ```
 
 **🎤 Talk Track (Before):**
