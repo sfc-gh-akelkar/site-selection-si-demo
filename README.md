@@ -48,7 +48,61 @@ This demo enables clinical operations teams to ask questions in plain English ac
 ### Prerequisites
 
 - Snowflake account with Cortex features enabled
-- Role with permissions to create databases, schemas, and agents
+- Role with appropriate privileges (see [Role Setup](#role-setup) below)
+
+### Role Setup
+
+The demo uses a role called `SF_INTELLIGENCE_DEMO`. Create and configure this role with the required privileges:
+
+```sql
+-- Run as ACCOUNTADMIN
+USE ROLE ACCOUNTADMIN;
+
+-- Create the demo role
+CREATE ROLE IF NOT EXISTS SF_INTELLIGENCE_DEMO;
+
+-- Grant Cortex database roles (required for AI features)
+GRANT DATABASE ROLE SNOWFLAKE.CORTEX_USER TO ROLE SF_INTELLIGENCE_DEMO;
+
+-- Grant warehouse usage
+GRANT USAGE ON WAREHOUSE <your_warehouse> TO ROLE SF_INTELLIGENCE_DEMO;
+
+-- Grant database creation (or USAGE on existing database)
+GRANT CREATE DATABASE ON ACCOUNT TO ROLE SF_INTELLIGENCE_DEMO;
+
+-- Assign role to user
+GRANT ROLE SF_INTELLIGENCE_DEMO TO USER <your_username>;
+```
+
+#### Required Privileges by Feature
+
+| Feature | Privilege | Object | Notes |
+|---------|-----------|--------|-------|
+| **Cortex Agent** | `CREATE AGENT` | Schema | Create the agent |
+| **Cortex Agent** | `USAGE` | Agent | Query the agent |
+| **Semantic View** | `CREATE SEMANTIC VIEW` | Schema | Create semantic views |
+| **Semantic View** | `SELECT` | Tables/Views | Access underlying data |
+| **Semantic View** | `REFERENCES, SELECT` | Semantic View | Use in Cortex Analyst |
+| **Cortex Search** | `CREATE CORTEX SEARCH SERVICE` | Schema | Create search service |
+| **Cortex Search** | `SELECT` | Tables/Views | Index source data |
+| **Cortex Search** | `USAGE` | Warehouse | Refresh the index |
+| **General** | `SNOWFLAKE.CORTEX_USER` | Database Role | Access Cortex AI features |
+
+#### Granting Access to End Users
+
+To allow other users to query the agent (without creation privileges):
+
+```sql
+-- Grant usage on database and schema
+GRANT USAGE ON DATABASE MEDPACE_DEMO TO ROLE <user_role>;
+GRANT USAGE ON SCHEMA MEDPACE_DEMO.CLINICAL_OPERATIONS TO ROLE <user_role>;
+
+-- Grant usage on the agent
+GRANT USAGE ON AGENT MEDPACE_DEMO.CLINICAL_OPERATIONS.SPONSOR_INSIGHTS_AGENT TO ROLE <user_role>;
+
+-- Grant Cortex access
+GRANT DATABASE ROLE SNOWFLAKE.CORTEX_USER TO ROLE <user_role>;
+```
 
 ### Installation
 
