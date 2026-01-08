@@ -5,7 +5,6 @@
  *          Sponsor Insights Agent backend.
  * 
  * Role: SF_INTELLIGENCE_DEMO
- * Author: Snowflake Data Engineering Team
  * Date: December 2024
  ******************************************************************************/
 

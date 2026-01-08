@@ -141,8 +141,7 @@ Give me a summary of enrollment progress and any quality concerns for MED-ONC-20
 ├── 03_semantic_views.sql             # Semantic views with business context
 ├── 04_unstructured_data_cortex_search.sql  # Protocol docs & search service
 ├── 05_cortex_agent.sql               # Cortex Agent definition
-├── DEMO_GUIDE.md                     # Detailed demo walkthrough
-└── USE_CASE_ARCHITECTURE.md          # Architecture diagrams
+└── SAMPLE_QUESTIONS.md               # Example questions for the agent
 ```
 
 ## Snowflake Components Used
@@ -157,8 +156,7 @@ Give me a summary of enrollment progress and any quality concerns for MED-ONC-20
 
 ## Documentation
 
-- [Demo Guide](DEMO_GUIDE.md) - Full demo script with verified questions and answers
-- [Architecture](USE_CASE_ARCHITECTURE.md) - Visual diagrams and component details
+- [Sample Questions](SAMPLE_QUESTIONS.md) - Example questions to ask the agent
 
 ## Troubleshooting
 
@@ -187,7 +185,7 @@ ALTER CORTEX SEARCH SERVICE PROTOCOL_SEARCH_SERVICE REFRESH;
 
 ## License
 
-This is a demo project for Snowflake Intelligence capabilities.
+This solution accelerator is provided as a reference implementation for Snowflake Intelligence capabilities.
 
 ---
 
