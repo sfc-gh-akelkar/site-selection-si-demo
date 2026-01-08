@@ -1,5 +1,5 @@
 /*******************************************************************************
- * MEDPACE SPONSOR INSIGHTS AGENT - STEP 2: STRUCTURED DATA TABLES
+ * CRO SPONSOR INSIGHTS AGENT - STEP 2: STRUCTURED DATA TABLES
  * 
  * Purpose: Create and populate structured data tables for clinical trial
  *          enrollment metrics and site performance dashboards.
@@ -14,7 +14,7 @@
  ******************************************************************************/
 
 USE ROLE SF_INTELLIGENCE_DEMO;
-USE SCHEMA MEDPACE_DEMO.CLINICAL_OPERATIONS;
+USE SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
 
 /*******************************************************************************
  * TABLE 1: TRIAL_ENROLLMENT_METRICS

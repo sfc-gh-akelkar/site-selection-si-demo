@@ -1,5 +1,5 @@
 /*******************************************************************************
- * MEDPACE SPONSOR INSIGHTS AGENT - MASTER SETUP SCRIPT
+ * CRO SPONSOR INSIGHTS AGENT - MASTER SETUP SCRIPT
  * 
  * Purpose: Execute all setup scripts in sequence to deploy the complete
  *          Sponsor Insights Agent backend.
@@ -10,7 +10,7 @@
  * Role Required: SF_INTELLIGENCE_DEMO
  * 
  * Execution Order:
- *   1. 01_database_schema_setup.sql     - Creates MEDPACE_DEMO database and schema
+ *   1. 01_database_schema_setup.sql     - Creates CRO_DEMO database and schema
  *   2. 02_structured_data_tables.sql    - Creates enrollment and performance tables
  *   3. 03_semantic_views.sql            - Creates semantic views with comments
  *   4. 04_unstructured_data_cortex_search.sql - Protocol docs and search service
@@ -23,7 +23,7 @@
 USE ROLE SF_INTELLIGENCE_DEMO;
 
 -- Display execution plan
-SELECT '=== MEDPACE SPONSOR INSIGHTS AGENT DEPLOYMENT ===' AS STATUS;
+SELECT '=== CRO SPONSOR INSIGHTS AGENT DEPLOYMENT ===' AS STATUS;
 SELECT 'Please execute the following scripts in order:' AS INSTRUCTIONS;
 SELECT '1. 01_database_schema_setup.sql' AS SCRIPT_1;
 SELECT '2. 02_structured_data_tables.sql' AS SCRIPT_2;
@@ -51,29 +51,29 @@ can be re-run safely.
 -- After running all scripts, use these queries to verify deployment:
 
 -- 1. Verify database and schema
--- SHOW SCHEMAS IN DATABASE MEDPACE_DEMO;
+-- SHOW SCHEMAS IN DATABASE CRO_DEMO;
 
 -- 2. Verify tables
--- SHOW TABLES IN SCHEMA MEDPACE_DEMO.CLINICAL_OPERATIONS;
+-- SHOW TABLES IN SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
 
 -- 3. Verify views
--- SHOW VIEWS IN SCHEMA MEDPACE_DEMO.CLINICAL_OPERATIONS;
+-- SHOW VIEWS IN SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
 
 -- 4. Verify Cortex Search Service
--- SHOW CORTEX SEARCH SERVICES IN SCHEMA MEDPACE_DEMO.CLINICAL_OPERATIONS;
+-- SHOW CORTEX SEARCH SERVICES IN SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
 
 -- 5. Verify Agent
--- SHOW AGENTS IN SCHEMA MEDPACE_DEMO.CLINICAL_OPERATIONS;
--- DESCRIBE AGENT MEDPACE_DEMO.CLINICAL_OPERATIONS.SPONSOR_INSIGHTS_AGENT;
+-- SHOW AGENTS IN SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
+-- DESCRIBE AGENT CRO_DEMO.CLINICAL_OPERATIONS.SPONSOR_INSIGHTS_AGENT;
 
 -- 6. Sample data verification
--- SELECT * FROM MEDPACE_DEMO.CLINICAL_OPERATIONS.ENROLLMENT_ANALYTICS_VIEW LIMIT 5;
--- SELECT * FROM MEDPACE_DEMO.CLINICAL_OPERATIONS.SITE_PERFORMANCE_VIEW LIMIT 5;
--- SELECT * FROM MEDPACE_DEMO.CLINICAL_OPERATIONS.TRIAL_PROTOCOL_DOCUMENTS_CHUNKS LIMIT 5;
+-- SELECT * FROM CRO_DEMO.CLINICAL_OPERATIONS.ENROLLMENT_ANALYTICS_VIEW LIMIT 5;
+-- SELECT * FROM CRO_DEMO.CLINICAL_OPERATIONS.SITE_PERFORMANCE_VIEW LIMIT 5;
+-- SELECT * FROM CRO_DEMO.CLINICAL_OPERATIONS.TRIAL_PROTOCOL_DOCUMENTS_CHUNKS LIMIT 5;
 
 -- 7. Test Cortex Search (uncomment to run)
 -- SELECT SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
---     'MEDPACE_DEMO.CLINICAL_OPERATIONS.PROTOCOL_SEARCH_SERVICE',
+--     'CRO_DEMO.CLINICAL_OPERATIONS.PROTOCOL_SEARCH_SERVICE',
 --     '{
 --         "query": "What are the exclusion criteria for patients with brain metastases?",
 --         "columns": ["CHUNK_TEXT", "STUDY_ID", "SECTION_TYPE"],
