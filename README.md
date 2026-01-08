@@ -1,4 +1,4 @@
-# CRO Sponsor Insights Agent
+# Clinical Trial Insights Agent
 
 A Snowflake Intelligence demo showcasing **natural language analytics** for clinical trial operations using Cortex Agents, Semantic Views, and Cortex Search.
 
@@ -94,11 +94,11 @@ To allow other users to query the agent (without creation privileges):
 
 ```sql
 -- Grant usage on database and schema
-GRANT USAGE ON DATABASE CRO_DEMO TO ROLE <user_role>;
-GRANT USAGE ON SCHEMA CRO_DEMO.CLINICAL_OPERATIONS TO ROLE <user_role>;
+GRANT USAGE ON DATABASE CLINICAL_TRIAL_DEMO TO ROLE <user_role>;
+GRANT USAGE ON SCHEMA CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS TO ROLE <user_role>;
 
 -- Grant usage on the agent
-GRANT USAGE ON AGENT CRO_DEMO.CLINICAL_OPERATIONS.SPONSOR_INSIGHTS_AGENT TO ROLE <user_role>;
+GRANT USAGE ON AGENT CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.SPONSOR_INSIGHTS_AGENT TO ROLE <user_role>;
 
 -- Grant Cortex access
 GRANT DATABASE ROLE SNOWFLAKE.CORTEX_USER TO ROLE <user_role>;
@@ -129,7 +129,7 @@ Run the SQL scripts in order using Snowsight:
 
 ```sql
 USE ROLE SF_INTELLIGENCE_DEMO;
-USE SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
+USE SCHEMA CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS;
 
 SHOW TABLES;
 SHOW SEMANTIC VIEWS;
@@ -139,7 +139,7 @@ SHOW AGENTS;
 
 ### Access the Agent
 
-Navigate to **Snowflake Intelligence** in Snowsight and select **"Sponsor Insights Agent"**.
+Navigate to **Snowflake Intelligence** in Snowsight and select **"Clinical Trial Insights"**.
 
 ## Sample Questions
 
@@ -216,14 +216,14 @@ Give me a summary of enrollment progress and any quality concerns for MED-ONC-20
 
 ### Agent Not Responding
 ```sql
-SHOW AGENTS IN SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
+SHOW AGENTS IN SCHEMA CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS;
 DESCRIBE AGENT SPONSOR_INSIGHTS_AGENT;
 ```
 
 ### Search Not Working
 ```sql
 SELECT SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
-    'CRO_DEMO.CLINICAL_OPERATIONS.PROTOCOL_SEARCH_SERVICE',
+    'CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.PROTOCOL_SEARCH_SERVICE',
     '{
         "query": "exclusion criteria brain metastases",
         "columns": ["CHUNK_TEXT", "STUDY_ID", "SECTION_TYPE"],

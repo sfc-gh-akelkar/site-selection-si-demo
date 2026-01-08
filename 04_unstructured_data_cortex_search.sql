@@ -1,5 +1,5 @@
 /*******************************************************************************
- * CRO SPONSOR INSIGHTS AGENT - STEP 4: UNSTRUCTURED DATA & CORTEX SEARCH
+ * CLINICAL_TRIAL SPONSOR INSIGHTS AGENT - STEP 4: UNSTRUCTURED DATA & CORTEX SEARCH
  * 
  * Purpose: Create infrastructure for protocol document search capabilities.
  *          This enables natural language queries against clinical protocol
@@ -13,7 +13,7 @@
  ******************************************************************************/
 
 USE ROLE SF_INTELLIGENCE_DEMO;
-USE SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
+USE SCHEMA CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS;
 
 /*******************************************************************************
  * TABLE: TRIAL_PROTOCOL_DOCUMENTS_CHUNKS
@@ -42,7 +42,7 @@ CREATE OR REPLACE TABLE TRIAL_PROTOCOL_DOCUMENTS_CHUNKS (
     METADATA                VARIANT
         COMMENT 'Additional structured metadata in JSON format including author, approval date, and change summary.'
 )
-COMMENT = 'Chunked protocol document storage for Cortex Search. Contains searchable text from clinical trial protocols including exclusion criteria, dosing instructions, and protocol amendments. Used by the Sponsor Insights Agent for procedural and protocol questions.';
+COMMENT = 'Chunked protocol document storage for Cortex Search. Contains searchable text from clinical trial protocols including exclusion criteria, dosing instructions, and protocol amendments. Used by the Clinical Trial Insights Agent for procedural and protocol questions.';
 
 /*******************************************************************************
  * INSERT SAMPLE PROTOCOL CHUNKS
@@ -577,11 +577,11 @@ CREATE OR REPLACE CORTEX SEARCH SERVICE PROTOCOL_SEARCH_SERVICE
     );
 
 -- Verify Cortex Search Service creation
-SHOW CORTEX SEARCH SERVICES IN SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
+SHOW CORTEX SEARCH SERVICES IN SCHEMA CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS;
 
 -- Example query to test the search service (using modern SEARCH_PREVIEW syntax)
 -- SELECT SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
---     'CRO_DEMO.CLINICAL_OPERATIONS.PROTOCOL_SEARCH_SERVICE',
+--     'CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.PROTOCOL_SEARCH_SERVICE',
 --     '{
 --         "query": "What are the exclusion criteria for brain metastases?",
 --         "columns": ["CHUNK_TEXT", "STUDY_ID", "SECTION_TYPE"],

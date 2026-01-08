@@ -1,6 +1,6 @@
-# Sample Questions for the Sponsor Insights Agent
+# Sample Questions for the Clinical Trial Insights Agent
 
-This document provides example questions you can ask the Sponsor Insights Agent across different categories.
+This document provides example questions you can ask the Clinical Trial Insights Agent across different categories.
 
 ---
 
@@ -122,4 +122,5 @@ Once we address the issues with the 3 sites under review, what are some other po
 | **Enrollment Metrics** | Patient counts, screen failures, enrollment rates by site/study/region |
 | **Site Performance** | Quality ratings, protocol deviations, query resolution times |
 | **Protocol Documents** | Exclusion criteria, dosing regimens, amendments, safety protocols |
+
 

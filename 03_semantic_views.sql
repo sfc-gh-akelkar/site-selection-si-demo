@@ -1,5 +1,5 @@
 /*******************************************************************************
- * CRO SPONSOR INSIGHTS AGENT - STEP 3: SEMANTIC VIEWS
+ * CLINICAL_TRIAL SPONSOR INSIGHTS AGENT - STEP 3: SEMANTIC VIEWS
  * 
  * Purpose: Create Semantic Views with proper DDL structure for Cortex Analyst.
  *          These views define the business data model with facts, dimensions,
@@ -11,7 +11,7 @@
  ******************************************************************************/
 
 USE ROLE SF_INTELLIGENCE_DEMO;
-USE SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
+USE SCHEMA CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS;
 
 /*******************************************************************************
  * SEMANTIC VIEW 1: ENROLLMENT_SEMANTIC_VIEW
@@ -23,7 +23,7 @@ USE SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
 CREATE OR REPLACE SEMANTIC VIEW ENROLLMENT_SEMANTIC_VIEW
 
     TABLES (
-        enrollment AS CRO_DEMO.CLINICAL_OPERATIONS.TRIAL_ENROLLMENT_METRICS 
+        enrollment AS CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.TRIAL_ENROLLMENT_METRICS 
             PRIMARY KEY (ENROLLMENT_ID)
             COMMENT = 'Clinical trial enrollment data with patient recruitment metrics per site and study.'
     )
@@ -116,7 +116,7 @@ CREATE OR REPLACE SEMANTIC VIEW ENROLLMENT_SEMANTIC_VIEW
 CREATE OR REPLACE SEMANTIC VIEW SITE_PERFORMANCE_SEMANTIC_VIEW
 
     TABLES (
-        site_perf AS CRO_DEMO.CLINICAL_OPERATIONS.SITE_PERFORMANCE_DASHBOARD 
+        site_perf AS CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.SITE_PERFORMANCE_DASHBOARD 
             PRIMARY KEY (PERFORMANCE_ID)
             COMMENT = 'Site performance data including quality ratings, deviations, and monitoring metrics.'
     )
@@ -218,10 +218,10 @@ CREATE OR REPLACE SEMANTIC VIEW SITE_PERFORMANCE_SEMANTIC_VIEW
 CREATE OR REPLACE SEMANTIC VIEW COMBINED_INSIGHTS_SEMANTIC_VIEW
 
     TABLES (
-        enrollment AS CRO_DEMO.CLINICAL_OPERATIONS.TRIAL_ENROLLMENT_METRICS 
+        enrollment AS CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.TRIAL_ENROLLMENT_METRICS 
             PRIMARY KEY (ENROLLMENT_ID)
             COMMENT = 'Enrollment metrics per site and study.',
-        site_perf AS CRO_DEMO.CLINICAL_OPERATIONS.SITE_PERFORMANCE_DASHBOARD 
+        site_perf AS CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.SITE_PERFORMANCE_DASHBOARD 
             PRIMARY KEY (PERFORMANCE_ID)
             UNIQUE (SITE_ID)
             COMMENT = 'Site quality and performance data.'
@@ -276,7 +276,7 @@ CREATE OR REPLACE SEMANTIC VIEW COMBINED_INSIGHTS_SEMANTIC_VIEW
  ******************************************************************************/
 
 -- Show semantic views
-SHOW SEMANTIC VIEWS IN SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
+SHOW SEMANTIC VIEWS IN SCHEMA CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS;
 
 -- Describe each semantic view
 DESCRIBE SEMANTIC VIEW ENROLLMENT_SEMANTIC_VIEW;

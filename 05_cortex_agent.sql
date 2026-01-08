@@ -1,7 +1,7 @@
 /*******************************************************************************
- * CRO SPONSOR INSIGHTS AGENT - STEP 5: CORTEX AGENT CREATION
+ * CLINICAL_TRIAL SPONSOR INSIGHTS AGENT - STEP 5: CORTEX AGENT CREATION
  * 
- * Purpose: Create the Sponsor Insights Agent using Snowflake Cortex Agent
+ * Purpose: Create the Clinical Trial Insights Agent using Snowflake Cortex Agent
  *          with multi-tool orchestration across structured and unstructured data.
  * 
  * Prerequisites:
@@ -20,7 +20,7 @@
  ******************************************************************************/
 
 USE ROLE SF_INTELLIGENCE_DEMO;
-USE SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
+USE SCHEMA CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS;
 
 /*******************************************************************************
  * CREATE CORTEX AGENT: SPONSOR_INSIGHTS_AGENT
@@ -33,8 +33,8 @@ USE SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
  ******************************************************************************/
 
 CREATE OR REPLACE AGENT SPONSOR_INSIGHTS_AGENT
-    COMMENT = 'CRO Sponsor Insights Assistant - AI-powered agent for clinical trial analytics and protocol document search. Answers questions about enrollment metrics, site performance, and protocol requirements.'
-    PROFILE = '{"display_name": "CRO Sponsor Insights", "avatar": "medical-chart", "color": "blue"}'
+    COMMENT = 'Clinical Trial Insights Assistant - AI-powered agent for clinical trial analytics and protocol document search. Answers questions about enrollment metrics, site performance, and protocol requirements.'
+    PROFILE = '{"display_name": "Clinical Trial Insights", "avatar": "medical-chart", "color": "blue"}'
     FROM SPECIFICATION
     $$
     models:
@@ -47,7 +47,7 @@ CREATE OR REPLACE AGENT SPONSOR_INSIGHTS_AGENT
 
     instructions:
       system: |
-        You are the CRO Sponsor Insights Assistant, an AI-powered clinical trial analytics expert.
+        You are the Clinical Trial Insights Assistant, an AI-powered clinical trial analytics expert.
         
         Your primary responsibilities:
         1. Answer questions about clinical trial enrollment metrics, patient recruitment, and screen failure rates
@@ -128,16 +128,16 @@ CREATE OR REPLACE AGENT SPONSOR_INSIGHTS_AGENT
 
     tool_resources:
       EnrollmentAnalyst:
-        semantic_view: CRO_DEMO.CLINICAL_OPERATIONS.ENROLLMENT_SEMANTIC_VIEW
+        semantic_view: CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.ENROLLMENT_SEMANTIC_VIEW
         
       SitePerformanceAnalyst:
-        semantic_view: CRO_DEMO.CLINICAL_OPERATIONS.SITE_PERFORMANCE_SEMANTIC_VIEW
+        semantic_view: CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.SITE_PERFORMANCE_SEMANTIC_VIEW
         
       CombinedInsightsAnalyst:
-        semantic_view: CRO_DEMO.CLINICAL_OPERATIONS.COMBINED_INSIGHTS_SEMANTIC_VIEW
+        semantic_view: CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.COMBINED_INSIGHTS_SEMANTIC_VIEW
         
       ProtocolSearchTool:
-        name: CRO_DEMO.CLINICAL_OPERATIONS.PROTOCOL_SEARCH_SERVICE
+        name: CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS.PROTOCOL_SEARCH_SERVICE
         max_results: 5
         id_column: CHUNK_ID
         title_column: RELATIVE_PATH
@@ -162,7 +162,7 @@ GRANT USAGE ON AGENT SPONSOR_INSIGHTS_AGENT TO ROLE SF_INTELLIGENCE_DEMO;
  ******************************************************************************/
 
 -- Show all agents in the schema
-SHOW AGENTS IN SCHEMA CRO_DEMO.CLINICAL_OPERATIONS;
+SHOW AGENTS IN SCHEMA CLINICAL_TRIAL_DEMO.CLINICAL_OPERATIONS;
 
 -- Describe the agent configuration
 DESCRIBE AGENT SPONSOR_INSIGHTS_AGENT;
@@ -197,7 +197,7 @@ DESCRIBE AGENT SPONSOR_INSIGHTS_AGENT;
  * - "What are the laboratory exclusion criteria for the prostate cancer study?"
  * - "How should grade 3 immune-related adverse events be managed?"
  * 
- * CROSS-DOMAIN QUESTIONS:
+ * CLINICAL_TRIALSS-DOMAIN QUESTIONS:
  * - "For the study with the highest screen failure rate, what are the exclusion criteria?"
  * - "Which sites are under review and what are the relevant protocol safety requirements?"
  ******************************************************************************/
